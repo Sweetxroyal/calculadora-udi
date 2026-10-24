@@ -51,6 +51,7 @@ function mostrarError(mensaje, id) {
     if (id) {
         let campo = document.getElementById(id);
         campo.classList.add("invalido");
+        campo.setAttribute("aria-invalid", "true");
         // Estilo directo para que se vea en rojo aunque el CSS no se haya actualizado
         campo.style.borderColor = "#b91c1c";
         campo.style.backgroundColor = "#fef2f2";
@@ -61,6 +62,7 @@ function mostrarError(mensaje, id) {
 // Quita la marca roja de un campo
 function quitarMarca(campo) {
     campo.classList.remove("invalido");
+    campo.removeAttribute("aria-invalid");
     campo.style.borderColor = "";
     campo.style.backgroundColor = "";
 }
@@ -245,6 +247,12 @@ function calcular() {
     document.getElementById("notaCorte1").textContent = aportes[0].toFixed(2) + " de 1.50";
     document.getElementById("notaCorte2").textContent = aportes[1].toFixed(2) + " de 1.50";
     document.getElementById("notaCorte3").textContent = aportes[2].toFixed(2) + " de 2.00";
+
+    // Barra de progreso: puntos acumulados sobre 5.0
+    let porcentajeBarra = Math.min(100, (acumulado / NOTA_MAXIMA) * 100);
+    document.getElementById("barraRelleno").style.width = porcentajeBarra + "%";
+    document.getElementById("barraProgreso").setAttribute("aria-valuenow", acumulado.toFixed(2));
+    document.getElementById("textoProgreso").textContent = acumulado.toFixed(2) + " / 5.00";
 
     if (pesoFaltante === 0) {
         // Todas las notas completas
