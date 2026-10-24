@@ -1,297 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculadora de Notas — UDI</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Promedio de Notas UDI</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-
-  <div class="page-bg">
-    <div class="page-grid-overlay" aria-hidden="true"></div>
-  </div>
-
-  <main class="container" role="main">
-
-    <!-- ENCABEZADO -->
-    <header class="header">
-      <div class="header-badge">
-        <span class="badge-dot"></span>
-        Universidad de Investigación y Desarrollo
-      </div>
-      <h1 class="header-title">Calculadora de <span class="accent">Notas</span></h1>
-      <p class="header-sub">Ingresa tus calificaciones por corte y calcula tu nota definitiva de forma automática.</p>
+    <header class="encabezado">
+        <h1>Calculadora de Promedio de Notas</h1>
+        <p class="universidad">Universidad de Investigación y Desarrollo – UDI</p>
+        <p class="estudiante">Estudiante: Brayan Quiroz</p>
     </header>
 
-    <!-- RESUMEN DE PESOS -->
-    <section class="pesos-grid" aria-label="Distribución de pesos por corte">
-      <div class="peso-item">
-        <span class="peso-num">30<span>%</span></span>
-        <span class="peso-label">Corte 1</span>
-        <span class="peso-desc">Quiz · Taller · Parcial</span>
-      </div>
-      <div class="peso-divider" aria-hidden="true">+</div>
-      <div class="peso-item">
-        <span class="peso-num">30<span>%</span></span>
-        <span class="peso-label">Corte 2</span>
-        <span class="peso-desc">Quiz · Taller · Parcial</span>
-      </div>
-      <div class="peso-divider" aria-hidden="true">+</div>
-      <div class="peso-item">
-        <span class="peso-num">40<span>%</span></span>
-        <span class="peso-label">Corte 3</span>
-        <span class="peso-desc">Quiz · Taller · Parcial</span>
-      </div>
-      <div class="peso-divider" aria-hidden="true">=</div>
-      <div class="peso-item peso-total">
-        <span class="peso-num">100<span>%</span></span>
-        <span class="peso-label">Definitiva</span>
-        <span class="peso-desc">Nota final del curso</span>
-      </div>
-    </section>
+    <main class="contenedor">
 
-    <!-- INSTRUCCIÓN -->
-    <div class="instruccion" role="note">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Las notas deben estar entre <strong>0.0</strong> y <strong>5.0</strong>. Todos los campos son obligatorios.
-    </div>
+        <section class="instrucciones">
+            <h2>Instrucciones</h2>
+            <ol>
+                <li>Ingresa tus notas de 0.0 a 5.0. Las que aún no tengas, déjalas vacías.</li>
+                <li><strong>Calcular este corte</strong> te muestra solo ese corte.</li>
+                <li><strong>Calcular definitiva</strong> usa todos los cortes y, si faltan notas, te da 3 formas de aprobar.</li>
+                <li>Se aprueba con una definitiva de <strong>3.0 o más</strong>.</li>
+            </ol>
+        </section>
 
-    <!-- CORTES -->
-    <div class="cortes-grid">
+        <section class="corte" id="corte1">
+            <h2>Primer corte <span class="peso">30%</span></h2>
+            <div class="campo">
+                <label for="taller1">Taller (5%)</label>
+                <input type="number" id="taller1" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+            </div>
+            <div class="campo">
+                <label for="quiz1">Quiz (5%)</label>
+                <input type="number" id="quiz1" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+            </div>
+            <div class="campo">
+                <label for="parcial1">Parcial (20%)</label>
+                <input type="number" id="parcial1" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+            </div>
+            <button type="button" class="btn-corte" data-corte="0">Calcular este corte</button>
+            <p class="resultado-corte" id="resCorte0"></p>
+        </section>
 
-      <!-- CORTE 1 -->
-      <section class="corte-card" id="card-corte1" aria-labelledby="titulo-corte1">
-        <div class="corte-card-header">
-          <div>
-            <div class="corte-numero">Corte 1</div>
-            <div id="titulo-corte1" class="corte-titulo">Primer período</div>
-          </div>
-          <div class="corte-badge">30%</div>
+        <section class="corte" id="corte2">
+            <h2>Segundo corte <span class="peso">30%</span></h2>
+            <div class="campo">
+                <label for="taller2">Taller (5%)</label>
+                <input type="number" id="taller2" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+            </div>
+            <div class="campo">
+                <label for="quiz2">Quiz (5%)</label>
+                <input type="number" id="quiz2" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+            </div>
+            <div class="campo">
+                <label for="parcial2">Parcial (20%)</label>
+                <input type="number" id="parcial2" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+            </div>
+            <button type="button" class="btn-corte" data-corte="1">Calcular este corte</button>
+            <p class="resultado-corte" id="resCorte1"></p>
+        </section>
+
+        <section class="corte" id="corte3">
+            <h2>Tercer corte <span class="peso">40%</span></h2>
+            <div class="campo">
+                <label for="taller3">Taller (5%)</label>
+                <input type="number" id="taller3" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+            </div>
+            <div class="campo">
+                <label for="quiz3">Quiz (5%)</label>
+                <input type="number" id="quiz3" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+            </div>
+            <div class="campo">
+                <label for="parcial3">Parcial (30%)</label>
+                <input type="number" id="parcial3" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+            </div>
+            <button type="button" class="btn-corte" data-corte="2">Calcular este corte</button>
+            <p class="resultado-corte" id="resCorte2"></p>
+        </section>
+
+        <div class="botones">
+            <button type="button" id="btnCalcular">Calcular definitiva</button>
+            <button type="button" id="btnLimpiar" class="secundario">Limpiar</button>
         </div>
 
-        <div class="campos-lista">
-          <div class="campo-row">
-            <div class="campo-info">
-              <label class="campo-label" for="c1_quiz">Quiz</label>
-              <span class="campo-pct">5%</span>
-            </div>
-            <div class="campo-input-wrap">
-              <input type="number" id="c1_quiz" class="campo-input" min="0" max="5" step="0.1" placeholder="0.0" autocomplete="off" />
-              <p class="campo-error" id="err_c1_quiz" role="alert" aria-live="polite">Ingresa una nota entre 0.0 y 5.0</p>
-            </div>
-          </div>
+        <p id="mensajeError" class="mensaje-error"></p>
 
-          <div class="campo-row">
-            <div class="campo-info">
-              <label class="campo-label" for="c1_taller">Taller</label>
-              <span class="campo-pct">5%</span>
-            </div>
-            <div class="campo-input-wrap">
-              <input type="number" id="c1_taller" class="campo-input" min="0" max="5" step="0.1" placeholder="0.0" autocomplete="off" />
-              <p class="campo-error" id="err_c1_taller" role="alert" aria-live="polite">Ingresa una nota entre 0.0 y 5.0</p>
-            </div>
-          </div>
+        <section id="resultados" class="resultados">
+            <h2>Resultados</h2>
+            <p>Nota del primer corte: <span id="notaCorte1"></span></p>
+            <p>Nota del segundo corte: <span id="notaCorte2"></span></p>
+            <p>Nota del tercer corte: <span id="notaCorte3"></span></p>
+            <p class="definitiva">Nota definitiva: <span id="definitiva"></span></p>
+            <p id="situacion" class="situacion"></p>
+            <button type="button" id="btnOtras" class="secundario">Ver otras opciones</button>
+        </section>
 
-          <div class="campo-row">
-            <div class="campo-info">
-              <label class="campo-label" for="c1_parcial">Parcial</label>
-              <span class="campo-pct">20%</span>
-            </div>
-            <div class="campo-input-wrap">
-              <input type="number" id="c1_parcial" class="campo-input" min="0" max="5" step="0.1" placeholder="0.0" autocomplete="off" />
-              <p class="campo-error" id="err_c1_parcial" role="alert" aria-live="polite">Ingresa una nota entre 0.0 y 5.0</p>
-            </div>
-          </div>
-        </div>
+    </main>
 
-        <div class="corte-footer">
-          <span class="corte-footer-label">Aporte al 30%</span>
-          <span class="corte-footer-val" id="sub1">—</span>
-        </div>
-      </section>
-
-      <!-- CORTE 2 -->
-      <section class="corte-card" id="card-corte2" aria-labelledby="titulo-corte2">
-        <div class="corte-card-header">
-          <div>
-            <div class="corte-numero">Corte 2</div>
-            <div id="titulo-corte2" class="corte-titulo">Segundo período</div>
-          </div>
-          <div class="corte-badge">30%</div>
-        </div>
-
-        <div class="campos-lista">
-          <div class="campo-row">
-            <div class="campo-info">
-              <label class="campo-label" for="c2_quiz">Quiz</label>
-              <span class="campo-pct">5%</span>
-            </div>
-            <div class="campo-input-wrap">
-              <input type="number" id="c2_quiz" class="campo-input" min="0" max="5" step="0.1" placeholder="0.0" autocomplete="off" />
-              <p class="campo-error" id="err_c2_quiz" role="alert" aria-live="polite">Ingresa una nota entre 0.0 y 5.0</p>
-            </div>
-          </div>
-
-          <div class="campo-row">
-            <div class="campo-info">
-              <label class="campo-label" for="c2_taller">Taller</label>
-              <span class="campo-pct">5%</span>
-            </div>
-            <div class="campo-input-wrap">
-              <input type="number" id="c2_taller" class="campo-input" min="0" max="5" step="0.1" placeholder="0.0" autocomplete="off" />
-              <p class="campo-error" id="err_c2_taller" role="alert" aria-live="polite">Ingresa una nota entre 0.0 y 5.0</p>
-            </div>
-          </div>
-
-          <div class="campo-row">
-            <div class="campo-info">
-              <label class="campo-label" for="c2_parcial">Parcial</label>
-              <span class="campo-pct">20%</span>
-            </div>
-            <div class="campo-input-wrap">
-              <input type="number" id="c2_parcial" class="campo-input" min="0" max="5" step="0.1" placeholder="0.0" autocomplete="off" />
-              <p class="campo-error" id="err_c2_parcial" role="alert" aria-live="polite">Ingresa una nota entre 0.0 y 5.0</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="corte-footer">
-          <span class="corte-footer-label">Aporte al 30%</span>
-          <span class="corte-footer-val" id="sub2">—</span>
-        </div>
-      </section>
-
-      <!-- CORTE 3 -->
-      <section class="corte-card" id="card-corte3" aria-labelledby="titulo-corte3">
-        <div class="corte-card-header">
-          <div>
-            <div class="corte-numero">Corte 3</div>
-            <div id="titulo-corte3" class="corte-titulo">Tercer período</div>
-          </div>
-          <div class="corte-badge corte-badge--mayor">40%</div>
-        </div>
-
-        <div class="campos-lista">
-          <div class="campo-row">
-            <div class="campo-info">
-              <label class="campo-label" for="c3_quiz">Quiz</label>
-              <span class="campo-pct">5%</span>
-            </div>
-            <div class="campo-input-wrap">
-              <input type="number" id="c3_quiz" class="campo-input" min="0" max="5" step="0.1" placeholder="0.0" autocomplete="off" />
-              <p class="campo-error" id="err_c3_quiz" role="alert" aria-live="polite">Ingresa una nota entre 0.0 y 5.0</p>
-            </div>
-          </div>
-
-          <div class="campo-row">
-            <div class="campo-info">
-              <label class="campo-label" for="c3_taller">Taller</label>
-              <span class="campo-pct">5%</span>
-            </div>
-            <div class="campo-input-wrap">
-              <input type="number" id="c3_taller" class="campo-input" min="0" max="5" step="0.1" placeholder="0.0" autocomplete="off" />
-              <p class="campo-error" id="err_c3_taller" role="alert" aria-live="polite">Ingresa una nota entre 0.0 y 5.0</p>
-            </div>
-          </div>
-
-          <div class="campo-row">
-            <div class="campo-info">
-              <label class="campo-label" for="c3_parcial">Parcial</label>
-              <span class="campo-pct">30%</span>
-            </div>
-            <div class="campo-input-wrap">
-              <input type="number" id="c3_parcial" class="campo-input" min="0" max="5" step="0.1" placeholder="0.0" autocomplete="off" />
-              <p class="campo-error" id="err_c3_parcial" role="alert" aria-live="polite">Ingresa una nota entre 0.0 y 5.0</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="corte-footer">
-          <span class="corte-footer-label">Aporte al 40%</span>
-          <span class="corte-footer-val" id="sub3">—</span>
-        </div>
-      </section>
-
-    </div><!-- /cortes-grid -->
-
-    <!-- BOTONES -->
-    <div class="acciones">
-      <button class="btn-calcular" id="btn-calcular" onclick="calcular()" type="button">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
-        Calcular nota definitiva
-      </button>
-      <button class="btn-reset" onclick="resetear()" type="button">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.99"/></svg>
-        Limpiar campos
-      </button>
-    </div>
-
-    <!-- RESULTADO -->
-    <section class="resultado" id="resultado" aria-live="polite" aria-label="Resultado del cálculo" hidden>
-
-      <div class="resultado-nota-wrap">
-        <p class="resultado-etiqueta">Nota definitiva</p>
-        <div class="resultado-nota" id="nota-final">0.0</div>
-        <div class="resultado-estado" id="estado-badge">—</div>
-      </div>
-
-      <div class="resultado-barra-wrap" aria-label="Barra de progreso de la nota">
-        <div class="resultado-barra-track">
-          <div class="resultado-barra-fill" id="barra-fill"></div>
-          <div class="resultado-barra-minimo" title="Nota mínima aprobatoria: 3.0"></div>
-        </div>
-        <div class="resultado-barra-labels">
-          <span>0.0</span>
-          <span class="label-minimo">3.0 mínimo</span>
-          <span>5.0</span>
-        </div>
-      </div>
-
-      <div class="resultado-desglose">
-        <div class="desglose-item">
-          <span class="desglose-label">Corte 1</span>
-          <span class="desglose-nota" id="r1">—</span>
-          <span class="desglose-peso">× 30%</span>
-          <span class="desglose-aporte" id="a1">—</span>
-        </div>
-        <div class="desglose-sep" aria-hidden="true">+</div>
-        <div class="desglose-item">
-          <span class="desglose-label">Corte 2</span>
-          <span class="desglose-nota" id="r2">—</span>
-          <span class="desglose-peso">× 30%</span>
-          <span class="desglose-aporte" id="a2">—</span>
-        </div>
-        <div class="desglose-sep" aria-hidden="true">+</div>
-        <div class="desglose-item">
-          <span class="desglose-label">Corte 3</span>
-          <span class="desglose-nota" id="r3">—</span>
-          <span class="desglose-peso">× 40%</span>
-          <span class="desglose-aporte" id="a3">—</span>
-        </div>
-        <div class="desglose-sep desglose-sep--igual" aria-hidden="true">=</div>
-        <div class="desglose-item desglose-item--total">
-          <span class="desglose-label">Definitiva</span>
-          <span class="desglose-nota" id="r_total">—</span>
-          <span class="desglose-peso">100%</span>
-          <span class="desglose-aporte" id="a_total">—</span>
-        </div>
-      </div>
-
-      <p class="resultado-mensaje" id="resultado-mensaje"></p>
-
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <span>UDI — Universidad de Investigación y Desarrollo</span>
-    <span>Calculadora de Notas Académicas</span>
-  </footer>
-
-  <script src="logica.js"></script>
+    <script src="logica.js"></script>
 </body>
 </html>
