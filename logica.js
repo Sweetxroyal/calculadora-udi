@@ -51,15 +51,25 @@ function mostrarError(mensaje, id) {
     if (id) {
         let campo = document.getElementById(id);
         campo.classList.add("invalido");
+        // Estilo directo para que se vea en rojo aunque el CSS no se haya actualizado
+        campo.style.borderColor = "#b91c1c";
+        campo.style.backgroundColor = "#fef2f2";
         campo.focus();
     }
+}
+
+// Quita la marca roja de un campo
+function quitarMarca(campo) {
+    campo.classList.remove("invalido");
+    campo.style.borderColor = "";
+    campo.style.backgroundColor = "";
 }
 
 // Quita la marca roja de todos los campos
 function quitarErrores() {
     let marcados = document.querySelectorAll("input.invalido");
     for (let m = 0; m < marcados.length; m++) {
-        marcados[m].classList.remove("invalido");
+        quitarMarca(marcados[m]);
     }
 }
 
@@ -315,6 +325,6 @@ for (let c = 0; c < todosLosCampos.length; c++) {
         }
     });
     todosLosCampos[c].addEventListener("input", function (evento) {
-        evento.target.classList.remove("invalido");
+        quitarMarca(evento.target);
     });
 }
