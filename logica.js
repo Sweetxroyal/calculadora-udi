@@ -87,8 +87,9 @@ function calcularCorte(i) {
             " de 5.0. Aporta " + puntos.toFixed(2) + " de " + maximo.toFixed(2) + " puntos a la definitiva.";
     } else {
         let promedio = redondear(puntos / pesoIngresado);
+        let textoFaltan = faltan === 1 ? "falta 1 nota" : "faltan " + faltan + " notas";
         salida.textContent = "Llevas " + puntos.toFixed(2) + " de " + maximo.toFixed(2) +
-            " puntos. Promedio de lo ingresado: " + promedio.toFixed(1) + " (faltan " + faltan + " notas).";
+            " puntos. Promedio de lo ingresado: " + promedio.toFixed(1) + " (" + textoFaltan + ").";
     }
     salida.style.display = "block";
 }
