@@ -27,17 +27,19 @@
 
         <section class="corte" id="corte1">
             <h2>Primer corte <span class="peso">30%</span></h2>
-            <div class="campo">
-                <label for="taller1">Taller (5%)</label>
-                <input type="number" id="taller1" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
-            </div>
-            <div class="campo">
-                <label for="quiz1">Quiz (5%)</label>
-                <input type="number" id="quiz1" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
-            </div>
-            <div class="campo">
-                <label for="parcial1">Parcial (20%)</label>
-                <input type="number" id="parcial1" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+            <div class="campos">
+                <div class="campo">
+                    <label for="taller1">Taller (5%)</label>
+                    <input type="number" id="taller1" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+                </div>
+                <div class="campo">
+                    <label for="quiz1">Quiz (5%)</label>
+                    <input type="number" id="quiz1" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+                </div>
+                <div class="campo">
+                    <label for="parcial1">Parcial (20%)</label>
+                    <input type="number" id="parcial1" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+                </div>
             </div>
             <button type="button" class="btn-corte" data-corte="0">Calcular este corte</button>
             <p class="resultado-corte" id="resCorte0"></p>
@@ -45,17 +47,19 @@
 
         <section class="corte" id="corte2">
             <h2>Segundo corte <span class="peso">30%</span></h2>
-            <div class="campo">
-                <label for="taller2">Taller (5%)</label>
-                <input type="number" id="taller2" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
-            </div>
-            <div class="campo">
-                <label for="quiz2">Quiz (5%)</label>
-                <input type="number" id="quiz2" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
-            </div>
-            <div class="campo">
-                <label for="parcial2">Parcial (20%)</label>
-                <input type="number" id="parcial2" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+            <div class="campos">
+                <div class="campo">
+                    <label for="taller2">Taller (5%)</label>
+                    <input type="number" id="taller2" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+                </div>
+                <div class="campo">
+                    <label for="quiz2">Quiz (5%)</label>
+                    <input type="number" id="quiz2" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+                </div>
+                <div class="campo">
+                    <label for="parcial2">Parcial (20%)</label>
+                    <input type="number" id="parcial2" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+                </div>
             </div>
             <button type="button" class="btn-corte" data-corte="1">Calcular este corte</button>
             <p class="resultado-corte" id="resCorte1"></p>
@@ -63,17 +67,19 @@
 
         <section class="corte" id="corte3">
             <h2>Tercer corte <span class="peso">40%</span></h2>
-            <div class="campo">
-                <label for="taller3">Taller (5%)</label>
-                <input type="number" id="taller3" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
-            </div>
-            <div class="campo">
-                <label for="quiz3">Quiz (5%)</label>
-                <input type="number" id="quiz3" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
-            </div>
-            <div class="campo">
-                <label for="parcial3">Parcial (30%)</label>
-                <input type="number" id="parcial3" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+            <div class="campos">
+                <div class="campo">
+                    <label for="taller3">Taller (5%)</label>
+                    <input type="number" id="taller3" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+                </div>
+                <div class="campo">
+                    <label for="quiz3">Quiz (5%)</label>
+                    <input type="number" id="quiz3" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+                </div>
+                <div class="campo">
+                    <label for="parcial3">Parcial (30%)</label>
+                    <input type="number" id="parcial3" min="0" max="5" step="0.1" placeholder="0.0 - 5.0">
+                </div>
             </div>
             <button type="button" class="btn-corte" data-corte="2">Calcular este corte</button>
             <p class="resultado-corte" id="resCorte2"></p>
@@ -84,7 +90,7 @@
             <button type="button" id="btnLimpiar" class="secundario">Limpiar</button>
         </div>
 
-        <p id="mensajeError" class="mensaje-error"></p>
+        <p id="mensajeError" class="mensaje-error" role="alert"></p>
 
         <section id="resultados" class="resultados">
             <h2>Resultados</h2>
@@ -92,7 +98,18 @@
             <p>Aporte del segundo corte: <span id="notaCorte2"></span></p>
             <p>Aporte del tercer corte: <span id="notaCorte3"></span></p>
             <p class="definitiva"><span id="etiquetaDefinitiva">Nota definitiva:</span> <span id="definitiva"></span></p>
-            <p id="situacion" class="situacion"></p>
+            <div class="progreso">
+                <div class="progreso-texto">
+                    <span>Progreso hacia la nota máxima</span>
+                    <span id="textoProgreso">0.00 / 5.00</span>
+                </div>
+                <div class="barra" role="progressbar" id="barraProgreso" aria-label="Puntos acumulados sobre 5.0" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
+                    <div class="barra-relleno" id="barraRelleno"></div>
+                    <div class="barra-meta" title="Nota mínima para aprobar: 3.0"></div>
+                </div>
+                <p class="progreso-leyenda">La línea roja marca el 3.0 necesario para aprobar.</p>
+            </div>
+            <div id="situacion" class="situacion" role="status"></div>
             <button type="button" id="btnOtras" class="secundario">Ver otras opciones</button>
         </section>
 
