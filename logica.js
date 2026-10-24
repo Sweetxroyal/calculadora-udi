@@ -160,7 +160,8 @@ function mostrarOpciones() {
         ? "Para aprobar puedes lograr cualquiera de estas combinaciones:"
         : "Para aprobar necesitas esta combinación:";
 
-    mostrarSituacion("Te falta el " + e.porcentaje + "% de la nota. " + titulo + "<ul>" + lista + "</ul>", "pendiente");
+        let promedioNecesario = Math.ceil(e.promedioMinimo * 10 - 1e-9) / 10;
+    mostrarSituacion("Te falta el " + e.porcentaje + "% de la nota. Necesitas un promedio mínimo de <strong>" + promedioNecesario.toFixed(1) + "</strong> en lo que falta. " + titulo + "<ul>" + lista + "</ul>", "pendiente");
     document.getElementById("btnOtras").style.display = opciones.length > 1 ? "block" : "none";
 }
 
