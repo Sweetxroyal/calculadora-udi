@@ -1,19 +1,48 @@
+/* ---------- Variables de color ---------- */
+:root {
+    --azul: #1e3a8a;
+    --azul-oscuro: #172554;
+    --azul-claro: #dbeafe;
+    --azul-texto: #1e40af;
+    --fondo: #eef2f7;
+    --texto: #1f2937;
+    --blanco: #ffffff;
+    --gris-borde: #9ca3af;
+    --gris-linea: #e5e7eb;
+    --gris-suave: #f3f4f6;
+    --gris-boton: #4b5563;
+    --gris-boton-oscuro: #374151;
+    --teal: #0f766e;
+    --teal-oscuro: #115e59;
+    --rojo: #b91c1c;
+    --rojo-fondo: #fef2f2;
+    --aviso-fondo: #fef3c7;
+    --aviso-borde: #d97706;
+    --aviso-texto: #92400e;
+    --ok-fondo: #d1fae5;
+    --ok-texto: #065f46;
+    --mal-fondo: #fee2e2;
+    --mal-texto: #991b1b;
+    --foco: #f59e0b;
+    --sombra: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #eef2f7;
-    color: #1f2937;
+    background-color: var(--fondo);
+    color: var(--texto);
     margin: 0;
     line-height: 1.5;
 }
 
 /* Encabezado */
 .encabezado {
-    background-color: #1e3a8a;
-    color: #ffffff;
+    background-color: var(--azul);
+    color: var(--blanco);
     text-align: center;
     padding: 25px 15px;
 }
@@ -31,7 +60,7 @@ body {
 .estudiante {
     margin: 8px 0 0 0;
     font-size: 14px;
-    color: #dbeafe;
+    color: var(--azul-claro);
 }
 
 /* Contenedor principal */
@@ -43,8 +72,8 @@ body {
 
 /* Instrucciones */
 .instrucciones {
-    background-color: #fef3c7;
-    border-left: 6px solid #d97706;
+    background-color: var(--aviso-fondo);
+    border-left: 6px solid var(--aviso-borde);
     padding: 15px 20px;
     border-radius: 6px;
     margin-bottom: 20px;
@@ -53,7 +82,7 @@ body {
 .instrucciones h2 {
     margin-top: 0;
     font-size: 18px;
-    color: #92400e;
+    color: var(--aviso-texto);
 }
 
 .instrucciones ol {
@@ -63,33 +92,40 @@ body {
 
 /* Tarjetas de cada corte */
 .corte {
-    background-color: #ffffff;
+    background-color: var(--blanco);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--sombra);
     margin-bottom: 20px;
 }
 
 .corte h2 {
     margin-top: 0;
     font-size: 20px;
-    color: #1e3a8a;
-    border-bottom: 2px solid #e5e7eb;
+    color: var(--azul);
+    border-bottom: 2px solid var(--gris-linea);
     padding-bottom: 8px;
 }
 
 .peso {
     float: right;
-    background-color: #1e3a8a;
-    color: #ffffff;
+    background-color: var(--azul);
+    color: var(--blanco);
     font-size: 14px;
     padding: 3px 10px;
     border-radius: 12px;
 }
 
-/* Campos */
-.campo {
+/* Campos: en una fila en pantallas anchas, uno debajo del otro en el celular */
+.campos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
     margin-bottom: 12px;
+}
+
+.campo {
+    margin-bottom: 0;
 }
 
 label {
@@ -102,13 +138,20 @@ input {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    border: 2px solid #9ca3af;
+    border: 2px solid var(--gris-borde);
     border-radius: 6px;
 }
 
 input:focus {
-    border-color: #1e3a8a;
+    border-color: var(--azul);
     outline: none;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.25);
+}
+
+/* Campo con error */
+input.invalido {
+    border-color: var(--rojo);
+    background-color: var(--rojo-fondo);
 }
 
 /* Botones */
@@ -123,28 +166,56 @@ button {
     padding: 12px;
     font-size: 18px;
     font-weight: bold;
-    color: #ffffff;
-    background-color: #1e3a8a;
+    color: var(--blanco);
+    background-color: var(--azul);
     border: none;
     border-radius: 6px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #172554;
+    background-color: var(--azul-oscuro);
 }
 
 button.secundario {
-    background-color: #4b5563;
+    background-color: var(--gris-boton);
 }
 
 button.secundario:hover {
-    background-color: #374151;
+    background-color: var(--gris-boton-oscuro);
+}
+
+/* Foco visible para quien navega con teclado */
+button:focus-visible {
+    outline: 3px solid var(--foco);
+    outline-offset: 2px;
+}
+
+.btn-corte {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: var(--teal);
+}
+
+.btn-corte:hover {
+    background-color: var(--teal-oscuro);
+}
+
+.resultado-corte {
+    display: none;
+    background-color: var(--gris-suave);
+    border-left: 5px solid var(--azul);
+    padding: 10px;
+    border-radius: 6px;
+    margin: 10px 0 0 0;
+    font-size: 15px;
 }
 
 /* Mensaje de error */
 .mensaje-error {
-    color: #b91c1c;
+    color: var(--rojo);
     font-weight: bold;
     text-align: center;
     min-height: 20px;
@@ -153,16 +224,16 @@ button.secundario:hover {
 /* Resultados */
 .resultados {
     display: none;
-    background-color: #ffffff;
+    background-color: var(--blanco);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--sombra);
     margin-bottom: 30px;
 }
 
 .resultados h2 {
     margin-top: 0;
-    color: #1e3a8a;
+    color: var(--azul);
 }
 
 .resultados p {
@@ -172,8 +243,51 @@ button.secundario:hover {
 .definitiva {
     font-size: 22px;
     font-weight: bold;
-    border-top: 2px solid #e5e7eb;
+    border-top: 2px solid var(--gris-linea);
     padding-top: 12px;
+}
+
+/* Barra de progreso del acumulado sobre 5.0 */
+.progreso {
+    margin: 12px 0 16px 0;
+}
+
+.progreso-texto {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.barra {
+    position: relative;
+    height: 16px;
+    background-color: var(--gris-linea);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.barra-relleno {
+    height: 100%;
+    width: 0;
+    background-color: var(--azul);
+    border-radius: 8px;
+    transition: width 0.5s ease;
+}
+
+/* Marca de la nota mínima para aprobar (3.0 de 5.0 = 60%) */
+.barra-meta {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 60%;
+    width: 3px;
+    background-color: var(--rojo);
+}
+
+.progreso-leyenda {
+    font-size: 13px;
+    margin: 4px 0 0 0;
 }
 
 /* Mensaje de situación académica */
@@ -193,41 +307,23 @@ button.secundario:hover {
     padding-left: 20px;
 }
 
+.situacion li {
+    margin-bottom: 8px;
+}
+
 .aprobado {
-    background-color: #d1fae5;
-    color: #065f46;
+    background-color: var(--ok-fondo);
+    color: var(--ok-texto);
 }
 
 .reprobado {
-    background-color: #fee2e2;
-    color: #991b1b;
+    background-color: var(--mal-fondo);
+    color: var(--mal-texto);
 }
 
 .pendiente {
-    background-color: #dbeafe;
-    color: #1e40af;
-}
-
-.btn-corte {
-    width: 100%;
-    margin-top: 5px;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #0f766e;
-}
-
-.btn-corte:hover {
-    background-color: #115e59;
-}
-
-.resultado-corte {
-    display: none;
-    background-color: #f3f4f6;
-    border-left: 5px solid #1e3a8a;
-    padding: 10px;
-    border-radius: 6px;
-    margin: 10px 0 0 0;
-    font-size: 15px;
+    background-color: var(--azul-claro);
+    color: var(--azul-texto);
 }
 
 #btnOtras {
@@ -237,12 +333,13 @@ button.secundario:hover {
     font-size: 16px;
 }
 
-.situacion li {
-    margin-bottom: 8px;
-}
+/* Celulares y pantallas angostas */
+@media (max-width: 560px) {
+    .campos {
+        grid-template-columns: 1fr;
+    }
 
-/* Campo con error */
-input.invalido {
-    border-color: #b91c1c;
-    background-color: #fef2f2;
+    .encabezado h1 {
+        font-size: 24px;
+    }
 }
