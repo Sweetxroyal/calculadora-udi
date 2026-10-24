@@ -160,7 +160,7 @@ function mostrarOpciones() {
         ? "Para aprobar puedes lograr cualquiera de estas combinaciones:"
         : "Para aprobar necesitas esta combinación:";
 
-        let promedioNecesario = Math.ceil(e.promedioMinimo * 10 - 1e-9) / 10;
+    let promedioNecesario = Math.ceil(e.promedioMinimo * 10 - 1e-9) / 10;
     mostrarSituacion("Te falta el " + e.porcentaje + "% de la nota. Necesitas un promedio mínimo de <strong>" + promedioNecesario.toFixed(1) + "</strong> en lo que falta. " + titulo + "<ul>" + lista + "</ul>", "pendiente");
     document.getElementById("btnOtras").style.display = opciones.length > 1 ? "block" : "none";
 }
@@ -218,7 +218,7 @@ function calcular() {
 
     if (pesoFaltante === 0) {
         // Todas las notas completas
-         let definitiva = redondear(acumulado);
+        let definitiva = redondear(acumulado);
         document.getElementById("etiquetaDefinitiva").textContent = "Nota definitiva:";
         document.getElementById("definitiva").textContent = definitiva.toFixed(1);
 
@@ -253,6 +253,7 @@ function calcular() {
     }
 
     resultados.style.display = "block";
+    resultados.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 function limpiar() {
@@ -281,5 +282,15 @@ let botonesCorte = document.querySelectorAll(".btn-corte");
 for (let b = 0; b < botonesCorte.length; b++) {
     botonesCorte[b].addEventListener("click", function () {
         calcularCorte(parseInt(botonesCorte[b].getAttribute("data-corte")));
+    });
+}
+
+// Enter dentro de un campo calcula la definitiva
+let todosLosCampos = document.querySelectorAll("input");
+for (let c = 0; c < todosLosCampos.length; c++) {
+    todosLosCampos[c].addEventListener("keydown", function (evento) {
+        if (evento.key === "Enter") {
+            calcular();
+        }
     });
 }
