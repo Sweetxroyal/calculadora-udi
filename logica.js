@@ -216,7 +216,8 @@ function calcular() {
 
     if (pesoFaltante === 0) {
         // Todas las notas completas
-        let definitiva = redondear(acumulado);
+         let definitiva = redondear(acumulado);
+        document.getElementById("etiquetaDefinitiva").textContent = "Nota definitiva:";
         document.getElementById("definitiva").textContent = definitiva.toFixed(1);
 
         if (definitiva >= NOTA_MINIMA) {
@@ -226,7 +227,8 @@ function calcular() {
         }
     } else {
         // Faltan notas
-        document.getElementById("definitiva").textContent = acumulado.toFixed(2) + " (parcial)";
+        document.getElementById("etiquetaDefinitiva").textContent = "Acumulado hasta ahora:";
+        document.getElementById("definitiva").textContent = acumulado.toFixed(2) + " de 5.00";
 
         let necesarios = LIMITE_REDONDEO - acumulado;
         let promedioMinimo = necesarios / pesoFaltante;
