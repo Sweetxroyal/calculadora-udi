@@ -37,12 +37,30 @@ function leerCampo(id, nombreCorte) {
     }
     let valor = parseFloat(texto);
     if (isNaN(valor)) {
-        return { error: "Ingresa solo números (revisa el " + nombreCorte + ")." };
+        return { error: "Ingresa solo números (revisa el " + nombreCorte + ").", id: id };
     }
     if (valor < 0 || valor > NOTA_MAXIMA) {
-        return { error: "Las notas deben estar entre 0.0 y 5.0 (revisa el " + nombreCorte + ")." };
+        return { error: "Las notas deben estar entre 0.0 y 5.0 (revisa el " + nombreCorte + ").", id: id };
     }
     return { valor: valor };
+}
+
+// Muestra el error y, si se indica un campo, lo marca en rojo y lleva el cursor ahí
+function mostrarError(mensaje, id) {
+    document.getElementById("mensajeError").textContent = mensaje;
+    if (id) {
+        let campo = document.getElementById(id);
+        campo.classList.add("invalido");
+        campo.focus();
+    }
+}
+
+// Quita la marca roja de todos los campos
+function quitarErrores() {
+    let marcados = document.querySelectorAll("input.invalido");
+    for (let m = 0; m < marcados.length; m++) {
+        marcados[m].classList.remove("invalido");
+    }
 }
 
 // ---------- Cálculo de un solo corte ----------
@@ -50,6 +68,7 @@ function calcularCorte(i) {
     let mensajeError = document.getElementById("mensajeError");
     let salida = document.getElementById("resCorte" + i);
     mensajeError.textContent = "";
+    quitarErrores();
     salida.style.display = "none";
 
     let corte = cortes[i];
@@ -64,7 +83,7 @@ function calcularCorte(i) {
         let lectura = leerCampo(corte.campos[j][0], corte.nombre);
 
         if (lectura.error) {
-            mensajeError.textContent = lectura.error;
+            mostrarError(lectura.error, lectura.id);
             return;
         }
         if (lectura.vacio) {
@@ -171,6 +190,7 @@ function calcular() {
     let resultados = document.getElementById("resultados");
 
     mensajeError.textContent = "";
+    quitarErrores();
     resultados.style.display = "none";
     document.getElementById("btnOtras").style.display = "none";
     estadoOpciones = null;
@@ -191,7 +211,7 @@ function calcular() {
             let lectura = leerCampo(id, cortes[i].nombre);
 
             if (lectura.error) {
-                mensajeError.textContent = lectura.error;
+                mostrarError(lectura.error, lectura.id);
                 return;
             }
             if (lectura.vacio) {
@@ -264,6 +284,7 @@ function limpiar() {
         document.getElementById("resCorte" + i).style.display = "none";
     }
     document.getElementById("mensajeError").textContent = "";
+    quitarErrores();
     document.getElementById("resultados").style.display = "none";
     document.getElementById("btnOtras").style.display = "none";
     estadoOpciones = null;
@@ -292,5 +313,8 @@ for (let c = 0; c < todosLosCampos.length; c++) {
         if (evento.key === "Enter") {
             calcular();
         }
+    });
+    todosLosCampos[c].addEventListener("input", function (evento) {
+        evento.target.classList.remove("invalido");
     });
 }
