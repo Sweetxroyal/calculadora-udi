@@ -1,7 +1,8 @@
 const NOTA_MINIMA = 3.0;
 const NOTA_MAXIMA = 5.0;
-// Para que la definitiva redondeada a un decimal sea 3.0 se necesita 2.95 o más
-const LIMITE_REDONDEO = NOTA_MINIMA - 0.05;
+// Se aprueba con más de 2.95 (2.96 sube a 3.0, pero 2.95 no).
+// Las notas con sus pesos dan múltiplos de 0.005, así que el mínimo real es 2.955
+const LIMITE_REDONDEO = 2.955;
 
 // Cada campo: [id, peso, etiqueta]
 const cortes = [
@@ -14,7 +15,7 @@ const cortes = [
 let estadoOpciones = null;
 
 function redondear(valor) {
-    return Math.round(valor * 10 + 1e-9) / 10;
+    return Math.ceil(valor * 10 - 0.5 - 1e-9) / 10;
 }
 
 // Entero aleatorio entre min y max (incluidos)
